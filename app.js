@@ -16,6 +16,16 @@ app.use(express.json());
 app.use(express.static('public')); // Para servir archivos estáticos del front CSS, JS, assets
 //**********
 
+//Middlewares
+const error404 = require("./middlewars/error404.js")
+
+//Morgan
+const morgan = require("./middlewars/morgan.js")
+
+app.use(morgan(':method :url :status :param[id] - :response-time ms :body'));
+
+
+
 // Rutas: Habilita el fichero que hemos creado
 const movieRoutes = require("./routes/movies.route");
 const userRoutes = require("./routes/users.route");
@@ -35,6 +45,8 @@ app.use('/api/user', userRoutes);
 const moviesWebRoutes = require("./routes/moviesWeb.routes");
 app.use('/',moviesWebRoutes);
 //*******************************************
+
+app.use(error404);
 
 //No indica en que puerto y si esta funcionado
 app.listen(port, () => {
