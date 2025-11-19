@@ -1,4 +1,7 @@
+const express = require('express');
+const router = express.Router();
+const favoritesController = require('../controllers/favorites.controller');
 
+router.post('/', favoritesController.createFavorite);
 
-// GET http://localhost:3000/api/movie/id/1234
-//router.get("/id/:id", movieController.getOneMovie);
+module.exports = router;

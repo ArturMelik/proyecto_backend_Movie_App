@@ -9,6 +9,7 @@ require("dotenv").config();
 app.set('view engine', 'pug');
 app.set('views','./views');
 //**************************************************
+
 // Middlewares para parsear datos del formulario
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -29,7 +30,7 @@ app.use(morgan(':method :url :status :param[id] - :response-time ms :body'));
 // Rutas: Habilita el fichero que hemos creado
 const movieRoutes = require("./routes/movies.route");
 const userRoutes = require("./routes/users.route");
-
+const favoritesRoutes = require("./routes/favorites.route.js");
 // http://localhost:3000/
 app.get("/", (request, response) => {
   //El primer parametro envia petición y el siguiente respustas
@@ -39,6 +40,7 @@ app.get("/", (request, response) => {
 // API: Usar las rutas definidas 
 app.use('/api/movie', movieRoutes);
 app.use('/api/user', userRoutes);
+app.use('/api/favorites', favoritesRoutes);
 
 
 //Rutas WEB******************************
