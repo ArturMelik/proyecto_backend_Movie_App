@@ -6,7 +6,7 @@ const router = require("express").Router();
 router.get("/all/:title", movieController.getAllMovies);
 
 // GET http://localhost:3000/api/movie/titanic
-router.get("search/:title", movieController.getOneMovie);
+router.get("/:title", movieController.getOneMovie);
 
 // POST http://localhost:3000/api/movie
 router.post("/", movieController.postMovie);
