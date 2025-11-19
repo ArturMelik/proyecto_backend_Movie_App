@@ -1,7 +1,8 @@
 const express = require("express");
 const moviesWebController = require("../controllers/moviesWeb.controller");
 const router = express.Router();
-// Home
+
+//Search
 router.get("/search",moviesWebController.renderSearch);
 
 // Página detalle de película
