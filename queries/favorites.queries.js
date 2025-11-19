@@ -1,6 +1,6 @@
 const queries = {
   getFavoriteById: `
-    SELECT movie_id FROM favorites
+    SELECT id_movie FROM favorites
     WHERE id_user = $1
 `,
 
@@ -9,5 +9,12 @@ const queries = {
     VALUES ($1, $2)
     RETURNING *;
     `,
+
+  deleteFavorite: `
+    DELETE FROM favorites
+    WHERE id_user = $1 AND id_movie = $2
+    RETURNING *;
+  `,
 };
+
 module.exports = queries;
