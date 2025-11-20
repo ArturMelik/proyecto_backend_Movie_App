@@ -2,7 +2,10 @@ const express = require("express"); //Esta importando express
 const cookieParser = require('cookie-parser'); //cookie parser
 const app = express(); //Creando el servidor
 const port = 3000; //Puerto de pruebas
-const passport = require('passport');
+const swaggerUi = require('swagger-ui-express');
+const swaggerSpec = require('./config/swagger');
+
+//Para leer el fichero
 require("dotenv").config();
 
 
@@ -67,23 +70,9 @@ app.use('/api/favorites', favoritesRoutes);
 const moviesWebRoutes = require("./routes/moviesWeb.routes");
 const favoritesWebRoutes = require("./routes/favoritesWeb.route.js");
 
-app.use('/',moviesWebRoutes);
-app.use('/', favoritesWebRoutes);
-//*******************************************
-//-----
+// Endpoint para la documentación de Swagger
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-
-//rutas auth
-const authRoutes = require('./routes/auth.routes.js');
-app.use(authRoutes);
-
-
-//Middlewares
-const error404 = require("./middlewars/error404.js")
-const errorHandler = require('./middlewars/errorHandler.js');
-
-
-app.use(errorHandler); 
 app.use(error404);
 
 
