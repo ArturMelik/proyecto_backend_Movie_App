@@ -2,11 +2,9 @@ const express = require("express"); //Esta importando express
 const cookieParser = require('cookie-parser'); //cookie parser
 const app = express(); //Creando el servidor
 const port = 3000; //Puerto de pruebas
-const swaggerUi = require('swagger-ui-express');
-const swaggerSpec = require('./config/swagger');
-
-//Para leer el fichero
+const passport = require('passport');
 require("dotenv").config();
+
 
 
 require('./auth/google.auth.js'); // Importar configuración de Google Auth
@@ -60,6 +58,7 @@ app.get("/", (request, response) => {
 // Rutas: Habilita el fichero que hemos creado
 const movieRoutes = require("./routes/movies.route");
 const userRoutes = require("./routes/users.route");
+const favoritesRoutes = require("./routes/favorites.route.js")
 // API: Usar las rutas definidas 
 app.use('/api/movie', movieRoutes);
 app.use('/api/user', userRoutes);
@@ -69,10 +68,22 @@ app.use('/api/favorites', favoritesRoutes);
 //Rutas WEB---
 const moviesWebRoutes = require("./routes/moviesWeb.routes");
 const favoritesWebRoutes = require("./routes/favoritesWeb.route.js");
+app.use('/',moviesWebRoutes);
+app.use('/',favoritesWebRoutes);
+//-----
 
-// Endpoint para la documentación de Swagger
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
+//rutas auth
+const authRoutes = require('./routes/auth.routes.js');
+app.use(authRoutes);
+
+
+//Middlewares
+const error404 = require("./middlewars/error404.js")
+const errorHandler = require('./middlewars/errorHandler.js');
+
+
+app.use(errorHandler); 
 app.use(error404);
 
 
