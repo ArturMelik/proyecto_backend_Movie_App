@@ -14,18 +14,4 @@ const getAllFavorites = async (req, res) => {
   }
 };
 
-const createFavorite = async (req, res) => {
-  try {
-    const userId = req.user.id; 
-    const { movieId } = req.body;
-
-    const result = await favoritesModel.createFavoriteModel(userId, movieId);
-    res.status(201).json(result);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-};
-
-
-
 module.exports = { getAllFavorites, createFavorite};
