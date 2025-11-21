@@ -1,9 +1,11 @@
 doctype html
-html
+html(lang="es")
   head
-    title Dashboard de administrador
-    meta(charset="utf-8")
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Página de Inicio
     link(rel="stylesheet", href="/css/style.css")
+
 header.header
   nav.navbar
     ul.nav-list
@@ -21,3 +23,5 @@ header.header
             a.nav-link(href="/userDashboard") Usuario
         else
           a.nav-link(href="/login") Usuario
+  
+

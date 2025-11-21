@@ -46,9 +46,12 @@ html(lang="en")
             p
               strong Puntuación: 
               | #{movie.imdbRating}
+          if movie.Opinions 
+            p
+              strong Opinions: 
+              | #{movie.Opinions}
           button#favoriteButton(data-id=(movie.imdbID || movie._id)) Añadir a favoritos
       else
         p= message
 
     script(src="/js/script.js")
-  include footer.pug

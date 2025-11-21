@@ -16,9 +16,9 @@ html(lang="es")
         .favorites-container
           each movie in favorites
             .movie-card
-              h2= movie.Title
               if movie.Poster
                 img(src=movie.Poster, alt=movie.Title)
+              h2= movie.Title
               p 
                 strong Año: 
                 | #{movie.Year}
@@ -38,4 +38,3 @@ html(lang="es")
 
 
       script(src="/js/script.js")
-  include footer.pug
