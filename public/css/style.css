@@ -92,6 +92,11 @@ h2 {
 #buscador{
     text-align: center;
 }
+main {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+/*SEARCH--->PELIS*/
 #result{
     display: flex;
     flex-wrap: wrap;

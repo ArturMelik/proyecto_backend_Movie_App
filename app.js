@@ -17,6 +17,11 @@ app.set('view engine', 'pug');
 app.set('views','./views');
 //-------------------------------------------------
 
+// Para que reconozca al usuario
+app.use((req, res, next) => {
+  res.locals.user = req.user;  // ahora `user` está disponible en Pug
+  next();
+});
 
 
 // Middlewares para parsear datos del formulario
