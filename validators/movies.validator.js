@@ -43,13 +43,7 @@ const validateCreateMovie = [
     .withMessage("Plot is required")
     .isString()
     .withMessage("Plot should be a string"),
-
-  body("Country")
-    .exists()
-    .withMessage("Country is required")
-    .isString()
-    .withMessage("Country should be a string"),
-
+    
   body("Poster")
     .exists()
     .withMessage("Poster is required")
