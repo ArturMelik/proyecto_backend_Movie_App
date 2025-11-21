@@ -51,12 +51,6 @@ table {
 
 
 /*********NUESTRAS CSS**********/
-/* ===== Reset y base ===== */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
 
 body {
 
@@ -68,7 +62,35 @@ body {
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
+  margin-top: 100px;
 
+}
+main {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+strong {
+  font-weight: 700;
+}
+h1 {
+  font-size: 40px;
+  margin-bottom: 20px;
+  font-weight: 700;
+  color:#0c36fb
+}
+
+h2 {
+  font-size: 30px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+
+
+/*SEARCH--->PELIS*/
+#buscador{
+    text-align: center;
 }
 main {
     max-width: 1000px;
@@ -86,12 +108,11 @@ main {
 .movie-card {
   background-color: white;
   border-radius: 24px;
-  /* border: solid black; */
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   
   margin-bottom: 15px;
   width: 300px;
-  height: 630px;
+  height: 670px;
   
 }
 
@@ -115,7 +136,7 @@ main {
   margin-left: 15px;
   margin-right: 15px;
 }
- .detalle{
+.detalle{
     text-decoration: none;
     padding: 5px;
     border-radius: 10px;
@@ -127,24 +148,206 @@ main {
 
  }
 
-/* ===== Títulos ===== */
-h1 {
-  font-size: 40px;
+.detalle:hover {
+    background-color: #536ff0;
+ 
+}
+#movieName {
+  display: inline-block;
+  width: calc(100% - 120px);
+  margin-right: 10px;
+}
+
+#searchButton {
+  display: inline-block;
+}
+
+
+ /*PELI DETALLE*/
+ .movie-card-detalle{
+  background-color: white;
+  border-radius: 24px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  padding: 30px;
+  text-align: left;
   margin-bottom: 20px;
+ }
+ .movie-card-detalle img{
+    margin-bottom: 15px;
+    border-radius: 24px;
+}
+.movie-card-detalle p{
+    margin-bottom: 10px;
+}
+
+#favoriteButton{
+    margin-top: 20px;
+}
+
+
+
+/*LOGIN*/
+#login{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+#login-container {
+  background-color: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  width: 60%;
+  border: solid 3px #0c36fb80;
+  
+}
+form{
+  padding: 15px;
+}
+#login-container h1 {
   text-align: center;
-  font-weight: 700;
-  color:#0c36fb
+ 
 }
 
-h2 {
-  font-size: 1.5rem;
-  margin-top: 20px;
+#login-container label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+#login-container input {
+  width: 100%;
+  padding: 8px;
   margin-bottom: 10px;
-  font-weight: 500;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+#login-container p {
+  text-align: center;
+  margin-top: 10px;
+}
+
+#login-container a {
+  color: #0c36fb;
+  text-decoration: none;
+  padding: 5px;
+  border-radius: 24px;
+}
+#login-container a:hover {
+  background-color: #f3f0f0;
+  
 }
 
 
-/* ===== Inputs y botones ===== */
+
+/*SIGNUP*/
+ #signup{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+#signup-container {
+  background-color: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  width: 60%;
+  border: solid 3px #0c36fb80;
+  
+}
+
+#signup-container h1 {
+  text-align: center;
+ 
+}
+
+#signup-container label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+#signup-container input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+#signup-container p {
+  text-align: center;
+  margin-top: 10px;
+}
+/*ADMIN*/
+
+#admin{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+#admin-container {
+  background-color: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  width: 60%;
+  border: solid 3px #0c36fb80;
+  
+}
+
+#admin-container h1 {
+  text-align: center;
+ 
+}
+
+#admin-container label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+#admin-container input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+#admin-container p {
+  text-align: center;
+  margin-top: 10px;
+}
+
+#Pelisbbdd{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 50px;
+
+}
+
+.delete-btn{
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #0c36fb;
+    color: white;
+    margin-left: 15px;
+   margin-right: 15px;
+   margin-bottom: 15px;
+
+ }
+/* INPUTS Y BOTONES */
 input[type="text"],
 input[type="number"],
 input[type="email"],
@@ -173,50 +376,120 @@ button:hover {
   background-color: #536ff0;
 }
 
-/* ===== Links como botones ===== */
-a button {
-  display: inline-block;
-  margin: 5px;
+/* --------- Home --------- */
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
 }
 
-
-
-/* ===== Buscador ===== */
-#movieName {
-  display: inline-block;
-  width: calc(100% - 120px);
-  margin-right: 10px;
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
-#searchButton {
-  display: inline-block;
-}
-
-/* ===== Formularios ===== */
-form {
-  background-color: white;
-  padding: 15px;
+.button {
+  text-decoration: none;
+  background-color: #0c36fb;
+  color: white;
+  padding: 12px 25px;
   border-radius: 6px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  margin-bottom: 20px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
 }
 
-textarea {
-  resize: vertical;
+.button:hover {
+  background-color: #536ff0;
 }
+
+/* ------- Header ------- */
+
+/* ===== HEADER + NAVBAR ===== */
+
+.header {
+  width: 100%;
+  background-color: #0c36fb;
+  padding: 15px 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+}
+
+.navbar {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding: 5px;
+}
+
+.nav-list {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+
+.nav-link {
+  color: #0c36fb;
+  background-color: white;
+  padding: 5px 12px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 18px;
+  transition: opacity 0.3s ease;
+}
+
+.nav-link:hover {
+  opacity: 0.7;
+}
+
+.delete-btn {
+  margin: 10px;
+}
+
+
 
 /* ===== Responsive ===== */
 @media (max-width: 600px) {
-  #movieName {
+   
+   #movieName {
+    
     width: 100%;
     margin-bottom: 10px;
-  }
+  } 
 
   #searchButton {
-    width: 100%;
+    width: 100px;
   }
 
-  .movie-card img {
-    max-width: 100%;
+  .button {
+    padding: 10px 20px;
   }
+
+  .buttons {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .button {
+    width: 80%;
+    margin: 0 auto;
+  }
+  .navbar {
+    justify-content: center;
+}
+
 }
