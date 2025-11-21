@@ -10,11 +10,11 @@ html(lang="en")
   body
     include header.pug
     h1 Dashboard
+    #containerDashboard
+      // Botón para ir a buscar película
+      a(href="/search")
+        button Buscar Película
 
-    // Botón para ir a buscar película
-    a(href="/search")
-      button Buscar Película
-
-    // Botón para ir a mis películas
-    a(href="/favorites")
-      button Mis Películas
+      // Botón para ir a mis películas
+      a(href="/favorites")
+        button Mis Películas

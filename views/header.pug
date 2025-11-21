@@ -14,8 +14,6 @@ header.header
       li.nav-item
         a.nav-link(href="/search") Buscar
       li.nav-item
-        a.nav-link(href="/favorites") Favoritos
-      li.nav-item
         if user
           if user.role === 'admin'
             a.nav-link(href="/adminDashboard") Usuario

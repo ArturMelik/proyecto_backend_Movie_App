@@ -6,18 +6,20 @@ html
     link(rel="stylesheet", href="/css/style.css")
   body
     include header.pug
-    h1 Inicio de sesión
-    if error
-      p #{error}
-    form(action="/login" method="POST")
-      // Email
-      label(for="email") Email:
-      input(type="email" name="email" id="emailLogin" required)
-      br
-      // Password
-      label(for="password") Contraseña:
-      input(type="password" name="password" id="passwordLogin" required)
-      br
-      button(type="submit") Iniciar Sesión
-      p
-        a(href='/auth/google') Iniciar sesión con Google
+    #login
+      #login-container
+        h1 Inicio de sesión
+        if error
+          p #{error}
+        form(action="/login" method="POST")
+          // Email
+          label(for="email") Email:
+          input(type="email" name="email" id="emailLogin" required)
+          br
+          // Password
+          label(for="password") Contraseña:
+          input(type="password" name="password" id="passwordLogin" required)
+          br
+          button(type="submit") Iniciar Sesión
+          p
+            a(href='/auth/google') Iniciar sesión con Google

@@ -237,6 +237,11 @@ form{
   
 }
 
+ #containerDashboard {
+  display: flex;
+  gap: 20px;
+ }
+
 
 
 /*SIGNUP*/
