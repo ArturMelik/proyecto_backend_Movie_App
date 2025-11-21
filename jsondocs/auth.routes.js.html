@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: auth.routes.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: auth.routes.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const express = require('express');
+const router = express.Router();
+const passport = require('passport'); 
+const authControllers = require('../controllers/auth.controller');
+const authMiddleware = require('../middlewars/authMiddleware');
+const authorizeRole = require('../middlewars/roleMiddleware');
+
+
+//Ruta Signup
+router.get('/signup', (req, res) => res.render('signup'));
+router.post('/signup', authControllers.signUp);
+
+// Redirigir de / a /login
+router.get('/', (req, res) => res.redirect('/login'));
+
+router.get('/login', (req, res) => res.render('login'));
+router.post('/login', authControllers.login);
+
+// Ruta para iniciar sesión con Google
+router.get('/auth/google', passport.authenticate('google', { scope: ['email', 'profile'], prompt: 'select_account' }));
+
+// Callback de Google
+router.get("/google/callBack",
+    passport.authenticate('google', { failureRedirect: '/login' }),
+    (req, res) => {
+        res.cookie('token', req.user.token, { httpOnly: true });
+        const redirectUrl = req.user.user.role === 'admin' ? '/admin/dashboard' : '/user/dashboard';
+        res.redirect(redirectUrl);
+    }
+);
+//router.get('/logout', authControllers.logout);
+// router.get('/logout', (req, res) => {
+//     req.logout((err) => {
+//         if (err) return next(err);
+//         req.session.destroy(() => {
+//             res.clearCookie('connect.sid'); // Eliminar la cookie de sesión
+//             res.clearCookie('token'); // Eliminar el token JWT
+//             res.redirect('/login');
+//         });
+//     });
+// });
+
+
+
+/**
+ * @author Rebeca, Lucia, Artur &lt;RebecaLuciaArturpage.com> 
+ * @exports routes 
+ * @namespace auth.routes
+
+/**
+ * @swagger
+ * /logout:
+ *   get:
+ *     tags:
+ *       - Auth
+ *     summary: Cerrar sesión del usuario
+ *     description: Cierra la sesión del usuario eliminando la cookie de autenticación y redirige al login.
+ *     responses:
+ *       302:
+ *         description: Redirección al login después de cerrar sesión
+ *         headers:
+ *           Location:
+ *             description: URL de redirección
+ *             schema:
+ *               type: string
+ *               example: /login
+ *       200:
+ *         description: OK (solo si no hay redirección)
+ *       500:
+ *         description: Error al cerrar sesión
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "Error al cerrar sesión"
+ */
+//Log out
+router.get('/logout', (req, res) => {
+    // Si hubiera una sesión, la destruimos (opcional)
+    if (req.session) {
+        req.session.destroy(() => {});
+    }
+
+    // Borrar cookies
+    res.clearCookie('token');
+    res.clearCookie('connect.sid');  
+
+    // Redirigir al login
+    return res.redirect('/login');
+});
+
+
+
+/**
+ * @swagger
+ * /user/dashboard:
+ *   get:
+ *     tags:
+ *       - Users
+ *     summary: Dashboard del usuario
+ *     description: Renderiza la vista del dashboard para usuarios con rol 'user'.
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Dashboard renderizado correctamente
+ *         content:
+ *           text/html:
+ *             schema:
+ *               type: string
+ *               example: "&lt;html>Contenido del dashboard del usuario&lt;/html>"
+ *       401:
+ *         description: No autenticado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "No autorizado"
+ *       403:
+ *         description: Rol insuficiente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "Acceso denegado: rol insuficiente"
+ */
+router.get('/user/dashboard', authMiddleware, authorizeRole('user'), (req, res) => {
+    res.render('userDashboard', { role: 'user' });
+});
+
+/**
+ * @swagger
+ * /admin/dashboard:
+ *   get:
+ *     tags:
+ *       - Admin
+ *     summary: Panel de administración
+ *     description: Renderiza el dashboard de administrador. Solo accesible para usuarios con rol "admin".
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Dashboard del administrador renderizado correctamente.
+ *         content:
+ *           text/html:
+ *             schema:
+ *               type: string
+ *               example: "&lt;html>Contenido del dashboard admin&lt;/html>"
+ *       401:
+ *         description: Usuario no autenticado.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "No autorizado"
+ *       403:
+ *         description: Acceso denegado. El usuario no tiene el rol adecuado.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "Acceso denegado: rol insuficiente"
+ */
+
+router.get('/admin/dashboard', authMiddleware, authorizeRole('admin'), (req, res) => {
+    res.render('adminDashboard', { role: 'admin' });
+});
+
+
+module.exports = router;
+
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="auth.routes%250D%250A%250D%250A___.html">auth.routes
+
+/**</a></li><li><a href="favorites.route%250D%250A%250D%250A___.html">favorites.route
+
+/**</a></li><li><a href="favoritesWeb.route%250D%250A%250D%250A___.html">favoritesWeb.route
+
+/**</a></li><li><a href="movies.route%250D%250A%2520%250D%250A___.html">movies.route
+ 
+/**</a></li><li><a href="moviesWeb.route%250D%250A%250D%250A___.html">moviesWeb.route
+
+/**</a></li><li><a href="users.route%250D%250A%250D%250A%250D%250A___.html">users.route
+
+
+/**</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.5</a> on Thu Nov 20 2025 19:14:32 GMT+0100 (hora estándar de Europa central)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

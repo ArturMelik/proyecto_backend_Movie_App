@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: moviesWeb.routes.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: moviesWeb.routes.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const express = require("express");
+const moviesWebController = require("../controllers/moviesWeb.controller");
+const router = express.Router();
+
+//Dashboard
+
+/**
+ * @author Rebeca, Lucia, Artur &lt;RebecaLuciaArturpage.com> 
+ * @exports routes 
+ * @namespace moviesWeb.route
+
+/**
+ * @swagger
+ * /dashboard:
+ *   get:
+ *     tags:
+ *       - Web
+ *     summary: Renderizar el dashboard de películas
+ *     description: Renderiza la vista del dashboard principal con el listado de películas u otra información relevante.
+ *     responses:
+ *       200:
+ *         description: Vista del dashboard renderizada correctamente.
+ *         content:
+ *           text/html:
+ *             schema:
+ *               type: string
+ *               example: "&lt;html>Contenido del dashboard&lt;/html>"
+ *       500:
+ *         description: Error al renderizar el dashboard.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "Error al cargar el dashboard"
+ */
+router.get("/dashboard", moviesWebController.renderDashboard);
+
+/**
+ * @swagger
+ * /favoritos:
+ *   get:
+ *     tags:
+ *       - Web
+ *     summary: Renderizar la vista de favoritos
+ *     description: Muestra la página web donde se visualizan los favoritos del usuario.
+ *     responses:
+ *       200:
+ *         description: Vista de favoritos renderizada correctamente.
+ *         content:
+ *           text/html:
+ *             schema:
+ *               type: string
+ *               example: "&lt;html>Contenido de la vista de favoritos&lt;/html>"
+ *       500:
+ *         description: Error al renderizar la vista de favoritos.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "Error al cargar la página de favoritos"
+ */
+router.get("/favoritos", moviesWebController.renderFavoritos);
+
+
+
+//Search
+
+/**
+ * @swagger
+ * /search:
+ *   get:
+ *     tags:
+ *       - Web
+ *     summary: Renderizar la página de búsqueda
+ *     description: Renderiza la vista donde el usuario puede realizar búsquedas de películas.
+ *     responses:
+ *       200:
+ *         description: Vista de búsqueda renderizada correctamente.
+ *         content:
+ *           text/html:
+ *             schema:
+ *               type: string
+ *               example: "&lt;html>Contenido de la vista de búsqueda&lt;/html>"
+ *       500:
+ *         description: Error al renderizar la vista de búsqueda.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "Error al cargar la página de búsqueda"
+ */
+router.get("/search",moviesWebController.renderSearch);
+
+// Página detalle de película
+
+/**
+ * @swagger
+ * /search/{title}:
+ *   get:
+ *     tags:
+ *       - Web
+ *     summary: Mostrar detalles de una película por título
+ *     description: Renderiza la vista de detalles de una película buscada por su título.
+ *     parameters:
+ *       - in: path
+ *         name: title
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Título de la película a buscar.
+ *         example: "Inception"
+ *     responses:
+ *       200:
+ *         description: Vista de detalles de la película renderizada correctamente.
+ *         content:
+ *           text/html:
+ *             schema:
+ *               type: string
+ *               example: "&lt;html>Detalle de la película&lt;/html>"
+ *       404:
+ *         description: Película no encontrada.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "Película no encontrada"
+ *       500:
+ *         description: Error al renderizar la vista de detalles de la película.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "Error al cargar los detalles de la película"
+ */
+
+router.get("/search/:title", moviesWebController.renderMovieDetail);
+
+
+module.exports = router;
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="auth.routes%250D%250A%250D%250A___.html">auth.routes
+
+/**</a></li><li><a href="favorites.route%250D%250A%250D%250A___.html">favorites.route
+
+/**</a></li><li><a href="favoritesWeb.route%250D%250A%250D%250A___.html">favoritesWeb.route
+
+/**</a></li><li><a href="movies.route%250D%250A%2520%250D%250A___.html">movies.route
+ 
+/**</a></li><li><a href="moviesWeb.route%250D%250A%250D%250A___.html">moviesWeb.route
+
+/**</a></li><li><a href="users.route%250D%250A%250D%250A%250D%250A___.html">users.route
+
+
+/**</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.5</a> on Thu Nov 20 2025 19:14:32 GMT+0100 (hora estándar de Europa central)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
