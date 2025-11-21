@@ -8,6 +8,7 @@ html(lang="es")
     link(rel="stylesheet", href="/css/style.css")
 
   body
+    include header.pug
     main
       h1 Tus Películas Favoritas
 
@@ -15,9 +16,9 @@ html(lang="es")
         .favorites-container
           each movie in favorites
             .movie-card
-              h2= movie.Title
               if movie.Poster
                 img(src=movie.Poster, alt=movie.Title)
+              h2= movie.Title
               p 
                 strong Año: 
                 | #{movie.Year}

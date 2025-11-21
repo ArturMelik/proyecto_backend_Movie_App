@@ -3,7 +3,9 @@ html
   head
     title Login
     meta(charset="utf-8")
+    link(rel="stylesheet", href="/css/style.css")
   body
+    include header.pug
     h1 Inicio de sesión
     if error
       p #{error}

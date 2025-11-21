@@ -21,6 +21,11 @@ app.set('view engine', 'pug');
 app.set('views','./views');
 //-------------------------------------------------
 
+// Para que reconozca al usuario
+app.use((req, res, next) => {
+  res.locals.user = req.user;  // ahora `user` está disponible en Pug
+  next();
+});
 
 
 // Middlewares para parsear datos del formulario
@@ -50,13 +55,14 @@ app.use(morgan(':method :url :status :param[id] - :response-time ms :body'));
 
 
 // http://localhost:3000/
-app.get("/", (request, response) => {
-  //El primer parametro envia petición y el siguiente respustas
-  response.send("Hello World!");
+// app.get("/", (request, response) => {
+//   //El primer parametro envia petición y el siguiente respustas
+//   response.send("Hello World!");
+// });
+
+app.get('/', (req, res) => {
+  res.render('home'); // Esto buscará views/home.pug y lo renderizará
 });
-
-
-
 
 
 // Rutas: Habilita el fichero que hemos creado

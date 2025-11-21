@@ -3,6 +3,9 @@ const moviesWebController = require("../controllers/moviesWeb.controller");
 const router = require("express").Router();
 const {validateCreateMovie, validateDeleteMovie} = require("../validators/movies.validator");
 
+//GET http://localhost:3000/api/movie/all
+router.get("/bbdd", movieController.getAllMoviesbbdd)
+
 // GET http://localhost:3000/api/movie/all/:title
 
 
