@@ -4,6 +4,10 @@ const app = express(); //Creando el servidor
 const port = 3000; //Puerto de pruebas
 const passport = require('passport');
 require("dotenv").config();
+const swaggerUi = require('swagger-ui-express');
+const swaggerSpec = require('./config/swagger');
+const path = require("path");
+
 
 
 
@@ -89,9 +93,16 @@ const error404 = require("./middlewars/error404.js")
 const errorHandler = require('./middlewars/errorHandler.js');
 
 
+app.use('/api-jsdoc', express.static(path.join(__dirname, 'jsondocs')));
+
+
+// Endpoint para la documentación de Swagger
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+
+
 app.use(errorHandler); 
 app.use(error404);
-
 
 
 

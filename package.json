@@ -5,6 +5,7 @@
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "express-session": "^1.18.2",
+    "express-validator": "^7.3.1",
     "install": "^0.13.0",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^7.0.0",
@@ -15,13 +16,16 @@
     "passport-google-oauth20": "^2.0.0",
     "pg": "^8.16.3",
     "pug": "^3.0.3",
-    "puppeteer": "^24.31.0"
+    "puppeteer": "^24.31.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
   },
   "name": "proyecto_backend_movie_app",
   "version": "1.0.0",
   "description": "Se pide desarrollar una aplicación web de búsqueda y gestión de películas que contemple las siguientes funcionalidades y endpoints asociados. Trabajaremos sobre los conceptos vistos de Frontend y Backend en clase",
   "main": "app.js",
   "scripts": {
+    "generate-docs": "jsdoc -c jsdoc.json",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
     "dev": "nodemon server.js"
@@ -36,5 +40,8 @@
   "bugs": {
     "url": "https://github.com/rebecadiazmontenegro/proyecto_backend_Movie_App/issues"
   },
-  "homepage": "https://github.com/rebecadiazmontenegro/proyecto_backend_Movie_App#readme"
+  "homepage": "https://github.com/rebecadiazmontenegro/proyecto_backend_Movie_App#readme",
+  "devDependencies": {
+    "jsdoc": "^4.0.5"
+  }
 }
